@@ -1,8 +1,3 @@
-```markdown
-# SauceDemo Login Automation Tests
-
----
-
 ## Task Description (Original Assignment)
 
 > **Launch URL:** `https://www.saucedemo.com/`  
