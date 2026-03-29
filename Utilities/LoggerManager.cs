@@ -1,7 +1,7 @@
-﻿using Serilog;
-
-namespace SauceDemoTests.Utilities
+﻿namespace SauceDemoTests.Utilities
 {
+    using Serilog;
+
     public class LoggerManager
     {
         private static readonly object Lock = new object();

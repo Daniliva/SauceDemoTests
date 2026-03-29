@@ -1,10 +1,10 @@
-﻿using OpenQA.Selenium;
-using SauceDemoTests.Interfaces;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-
-namespace SauceDemoTests.Utilities
+﻿namespace SauceDemoTests.Utilities
 {
+    using OpenQA.Selenium;
+    using SauceDemoTests.Interfaces;
+    using WebDriverManager;
+    using WebDriverManager.DriverConfigs.Impl;
+
     public class EdgeStrategy : IBrowserStrategy
     {
         public IWebDriver CreateDriver()

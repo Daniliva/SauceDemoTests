@@ -1,15 +1,10 @@
-﻿using OpenQA.Selenium;
-
-namespace SauceDemoTests.Utilities
+﻿namespace SauceDemoTests.Utilities
 {
-    public class ElementAdapter
-    {
-        private readonly IWebElement element;
+    using OpenQA.Selenium;
 
-        public ElementAdapter(IWebElement element)
-        {
-            this.element = element;
-        }
+    public class ElementAdapter(IWebElement element)
+    {
+        private readonly IWebElement element = element;
 
         public string Text => this.element.Text;
 

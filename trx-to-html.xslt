@@ -69,8 +69,8 @@
               </td>
               <td>
                 <xsl:choose>
-                  <xsl:when test="contains(@testName, 'Firefox')">Firefox</xsl:when>
-                  <xsl:when test="contains(@testName, 'Edge')">Edge</xsl:when>
+                  <xsl:when test="contains(translate(@testName, 'CHROME', 'chrome'), 'chrome')">Chrome</xsl:when>
+                  <xsl:when test="contains(translate(@testName, 'FIREFOX', 'firefox'), 'firefox')">Firefox</xsl:when>
                   <xsl:otherwise>—</xsl:otherwise>
                 </xsl:choose>
               </td>
