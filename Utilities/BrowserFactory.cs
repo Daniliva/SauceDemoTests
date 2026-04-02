@@ -1,12 +1,12 @@
-﻿namespace SauceDemoTests.Utilities
-{
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    using OpenQA.Selenium.Firefox;
-    using WebDriverManager;
-    using WebDriverManager.DriverConfigs.Impl;
-    using WebDriverManager.Helpers;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager.Helpers;
 
+namespace SauceDemoTests.Utilities
+{
     public static class BrowserFactory
     {
         public static IWebDriver CreateDriver(string browserName)
