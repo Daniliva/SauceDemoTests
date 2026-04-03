@@ -1,11 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using SauceDemoTests.Pages;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager.Helpers;
+using SauceDemoTests.Utilities;
+
 
 namespace SauceDemoTests.Configuration
 {
@@ -15,24 +12,13 @@ namespace SauceDemoTests.Configuration
 
         public static void Start(string browser)
         {
+            LoggerManager.Instance!.Logger.Information($"Initializing TestApp for browser: {browser}");
             var services = new ServiceCollection();
 
             services.AddScoped<IWebDriver>(p =>
             {
-                IWebDriver driver;
-                if (browser.Equals("chrome", StringComparison.OrdinalIgnoreCase))
-                {
-                    new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
-                    driver = new ChromeDriver();
-                }
-                else
-                {
-                    new DriverManager().SetUpDriver(new FirefoxConfig());
-                    driver = new FirefoxDriver();
-                }
-
+                IWebDriver driver = DriverSingleton.GetDriver(browser);
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-                driver.Manage().Window.Maximize();
                 return driver;
             });
 
@@ -53,9 +39,9 @@ namespace SauceDemoTests.Configuration
         {
             if (Provider.Value != null)
             {
-                var driver = Provider.Value.GetService<IWebDriver>();
-                driver?.Quit();
-                driver?.Dispose();
+                LoggerManager.Instance!.Logger.Information("Stopping TestApp and cleaning up..."); 
+                
+                DriverSingleton.QuitDriver();
 
                 Provider.Value.Dispose();
                 Provider.Value = null!;

@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using SauceDemoTests.Configuration;
 using SauceDemoTests.Pages;
+using SauceDemoTests.Utilities;
 
 [assembly: Parallelizable(ParallelScope.Fixtures)]
 [assembly: LevelOfParallelism(8)]
@@ -43,6 +44,8 @@ namespace SauceDemoTests.Test
         [TestCaseSource(typeof(ConfigReader), nameof(ConfigReader.GetUsers))]
         public void UC1_TestLoginWithOnlyUsername(UserModel user)
         {
+            LoggerManager.Instance!.Logger.Information($"[UC-1] Running for user: {user.Username} on {this.browser}");
+
             this.loginPage.EnterUsername(user.Username);
             this.loginPage.EnterPassword(user.Password);
             this.loginPage.ClearPassword();
@@ -54,6 +57,8 @@ namespace SauceDemoTests.Test
         [TestCaseSource(typeof(ConfigReader), nameof(ConfigReader.GetUsers))]
         public void UC2_TestLoginWithValidCredentials(UserModel user)
         {
+            LoggerManager.Instance!.Logger.Information($"[UC-2] Running for user: {user.Username} on {this.browser}");
+
             this.loginPage.EnterUsername(user.Username);
             this.loginPage.EnterPassword(user.Password);
             this.loginPage.ClickLogin();
@@ -79,6 +84,8 @@ namespace SauceDemoTests.Test
             {
                 return;
             }
+
+            LoggerManager.Instance!.Logger.Information($"[UC-3] Running for user: {user.Username} on {this.browser}");
 
             this.loginPage.EnterUsername(user.Username);
             this.loginPage.EnterPassword(user.Password);

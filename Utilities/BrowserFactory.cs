@@ -1,9 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager.Helpers;
+using SauceDemoTests.Interfaces;
 
 namespace SauceDemoTests.Utilities
 {
@@ -11,27 +7,15 @@ namespace SauceDemoTests.Utilities
     {
         public static IWebDriver CreateDriver(string browserName)
         {
-            return browserName.ToLower() switch
+            LoggerManager.Instance!.Logger.Information($"[Factory] Initializing specific factory for: {browserName}");
+
+            IWebBrowserDriverFactory factory = browserName.ToLower() switch
             {
-                "chrome" => CreateChromeDriver(),
-                "firefox" => CreateFirefoxDriver(),
+                "chrome" => new ChromeDriverFactory(),
+                "firefox" => new FirefoxDriverFactory(),
                 _ => throw new System.ArgumentException($"Browser '{browserName}' is not supported.")
             };
-        }
-
-        private static IWebDriver CreateChromeDriver()
-        {
-            new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
-            var options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            return new ChromeDriver(options);
-        }
-
-        private static IWebDriver CreateFirefoxDriver()
-        {
-            new DriverManager().SetUpDriver(new FirefoxConfig());
-            var options = new FirefoxOptions();
-            return new FirefoxDriver(options);
+            return factory.CreateDriver();
         }
     }
 }
