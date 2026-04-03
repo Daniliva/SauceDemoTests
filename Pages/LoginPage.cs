@@ -1,22 +1,52 @@
-﻿namespace SauceDemoTests.Pages
-{
-    using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
+namespace SauceDemoTests.Pages
+{
     public class LoginPage(IWebDriver driver)
     {
         private readonly IWebDriver driver = driver;
 
-        private IWebElement UsernameInput => this.driver.FindElement(By.CssSelector("#user-name"));
+        private IWebElement UsernameInput
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector("#user-name"));
+            }
+        }
 
-        private IWebElement PasswordInput => this.driver.FindElement(By.CssSelector("#password"));
+        private IWebElement PasswordInput
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector("#password"));
+            }
+        }
 
-        private IWebElement LoginButton => this.driver.FindElement(By.CssSelector("#login-button"));
+        private IWebElement LoginButton
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector("#login-button"));
+            }
+        }
 
-        private IWebElement ErrorMessage => this.driver.FindElement(By.CssSelector(".error-message-container h3"));
+        private IWebElement ErrorMessage
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector(".error-message-container h3"));
+            }
+        }
 
-        public void EnterUsername(string username) => this.UsernameInput.SendKeys(username);
+        public void EnterUsername(string username)
+        {
+            this.UsernameInput.SendKeys(username);
+        }
 
-        public void EnterPassword(string password) => this.PasswordInput.SendKeys(password);
+        public void EnterPassword(string password)
+        {
+            this.PasswordInput.SendKeys(password);
+        }
 
         public void ClearPassword()
         {
@@ -24,8 +54,14 @@
             this.PasswordInput.SendKeys(Keys.Delete);
         }
 
-        public void ClickLogin() => this.LoginButton.Click();
+        public void ClickLogin()
+        {
+            this.LoginButton.Click();
+        }
 
-        public string GetErrorMessage() => this.ErrorMessage.Text;
+        public string GetErrorMessage()
+        {
+            return this.ErrorMessage.Text;
+        }
     }
 }

@@ -1,30 +1,61 @@
-﻿namespace SauceDemoTests.Pages
-{
-    using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
 
+namespace SauceDemoTests.Pages
+{
     public class InventoryPage(IWebDriver driver)
     {
         private readonly IWebDriver driver = driver;
 
-        public IWebElement BurgerMenu => this.driver.FindElement(By.CssSelector("#react-burger-menu-btn"));
+        public IWebElement BurgerMenu
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector("#react-burger-menu-btn"));
+            }
+        }
 
-        public IWebElement AppLogo => this.driver.FindElement(By.CssSelector(".app_logo"));
+        public IWebElement AppLogo
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector(".app_logo"));
+            }
+        }
 
-        public IWebElement ShoppingCartIcon => this.driver.FindElement(By.CssSelector(".shopping_cart_link"));
+        public IWebElement ShoppingCartIcon
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector(".shopping_cart_link"));
+            }
+        }
 
-        public IWebElement SortDropdown => this.driver.FindElement(By.CssSelector(".product_sort_container"));
+        public IWebElement SortDropdown
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector(".product_sort_container"));
+            }
+        }
 
-        public IReadOnlyCollection<IWebElement> InventoryItems => this.driver.FindElements(By.CssSelector(".inventory_item"));
+        public IReadOnlyCollection<IWebElement> InventoryItems
+        {
+            get
+            {
+                return this.driver.FindElements(By.CssSelector(".inventory_item"));
+            }
+        }
 
         public void OpenAnyProductDetails()
         {
-            var firstProduct = this.driver.FindElement(By.CssSelector(".inventory_item_name"));
-            firstProduct.Click();
+            this.driver.FindElement(By.CssSelector(".inventory_item_name")).Click();
         }
 
         public string GetCartBadgeCount()
         {
-            return this.driver.FindElement(By.CssSelector(".shopping_cart_badge")).Text;
+            var badges = this.driver.FindElements(By.CssSelector(".shopping_cart_badge"));
+            return badges.Count > 0 ? badges[0].Text : "0";
         }
     }
 }

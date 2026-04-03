@@ -1,11 +1,7 @@
-﻿namespace SauceDemoTests.Utilities
-{
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    using OpenQA.Selenium.Firefox;
-    using WebDriverManager;
-    using WebDriverManager.DriverConfigs.Impl;
+﻿using OpenQA.Selenium;
 
+namespace SauceDemoTests.Utilities
+{
     public sealed class DriverSingleton
     {
         private static readonly ThreadLocal<IWebDriver> DriverHolder = new ThreadLocal<IWebDriver>();
@@ -18,6 +14,7 @@
             {
                 DriverHolder.Value = BrowserFactory.CreateDriver(browser);
             }
+
             return DriverHolder.Value;
         }
 

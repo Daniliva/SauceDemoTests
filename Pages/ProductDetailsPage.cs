@@ -1,13 +1,22 @@
-﻿namespace SauceDemoTests.Pages
-{
-    using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
+namespace SauceDemoTests.Pages
+{
     public class ProductDetailsPage(IWebDriver driver)
     {
         private readonly IWebDriver driver = driver;
 
-        private IWebElement AddToCartButton => this.driver.FindElement(By.CssSelector(".btn_inventory"));
+        private IWebElement AddToCartButton
+        {
+            get
+            {
+                return this.driver.FindElement(By.CssSelector("button[data-test^='add-to-cart']"));
+            }
+        }
 
-        public void ClickAddToCart() => this.AddToCartButton.Click();
+        public void ClickAddToCart()
+        {
+            this.AddToCartButton.Click();
+        }
     }
 }
