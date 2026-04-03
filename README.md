@@ -4,12 +4,13 @@ This project implements automated UI testing for the [SauceDemo](https://www.sau
 
 ## Technology Stack
 - **Language:** C# (.NET 9.0)
-- **Test Framework:** NUnit 3
+- **Test Framework:** NUnit
 - **Automation Tool:** Selenium WebDriver
 - **Driver Manager:** WebDriverManager
 - **Assertions:** FluentAssertions
 - **Locators:** CSS Selectors only
-- **Browsers:** Google Chrome, Mozilla Firefox
+- **Browsers:** Multi-browser support (Chrome, Firefox) via JSON config in Headless mode
+- **Logging:** Serilog
 
 ## Architecture and Patterns
 The project is designed using test automation best practices, aiming for the maximum score based on the evaluation criteria:
@@ -18,12 +19,15 @@ The project is designed using test automation best practices, aiming for the max
    - UI interaction logic is strictly separated from test logic.
    - Implemented classes: `LoginPage`, `InventoryPage`, `ProductDetailsPage`.
 2. **Singleton (Thread-Safe):**
-   - The `DriverSingleton` class manages the WebDriver lifecycle using `ThreadLocal<IWebDriver>`. This ensures thread safety during parallel test execution.
-3. **Factory Method:**
-   - The `BrowserFactory` class encapsulates the logic for initializing the required browser based on the launch parameters.
-4. **Data-Driven Testing:**
-   - NUnit `[TestCase]` attributes are used to parameterize the tests.
-5. **Parallel Execution:**
+   - The `DriverSingleton` class manages the WebDriver lifecycle using `ThreadLocal<IWebDriver>`. 
+   - The `LoggerManager` implements a global, thread-safe Serilog instance for console logging.
+3. **Factory Method / Abstract Factory:**
+   - The `BrowserFactory` acts as a dispatcher that utilizes specific factories (`ChromeDriverFactory`, `FirefoxDriverFactory`) to initialize the required browser based on the launch parameters.
+4. **Data-Driven Testing (JSON):**
+   - NUnit `[TestCaseSource]` attributes are used to parameterize tests. Test data (multiple users, expected results) is loaded dynamically from `users.json`.
+5. **Dependency Injection & Service Locator:**
+   - The `TestApp` class acts as a Thread-Safe static DI container (`ThreadLocal<ServiceProvider>`) to automatically resolve dependencies for all Page Objects.
+6. **Parallel Execution:**
    - Tests are configured for parallel execution (at the `Fixtures` and `All` levels), significantly speeding up the suite execution across different browsers.
 
 ---
@@ -31,6 +35,7 @@ The project is designed using test automation best practices, aiming for the max
 ## Test Cases (Use Cases)
 
 **UC-1: Test Login form with only Username provided**
+- Iterates over users from the JSON dataset.
 - Enter any username.
 - Enter password.
 - Clear the "Password" field.
@@ -38,15 +43,16 @@ The project is designed using test automation best practices, aiming for the max
 - **Expected Result:** An error message appears: `Epic sadface: Password is required`.
 
 **UC-2: Test Login form with valid credentials**
-- Enter a valid username (`standard_user`) and password (`secret_sauce`).
+- Iterates over users from the JSON dataset.
+- Enter username and password.
 - Click the "Login" button.
-- **Expected Result:** Successful authorization, the main page displays the Burger Menu, "Swag Labs" logo, shopping cart icon, sorting filter dropdown, and the list of inventory items.
+- **Expected Result:** Successful authorization, the main page displays the Burger Menu, "Swag Labs" logo, shopping cart icon, sorting filter dropdown, and the list of inventory items. *(Gracefully handles and validates `locked_out_user`)*.
 
 **UC-3: Test adding products to shopping cart**
-- Login with a valid user.
+- Login with a valid user from the JSON dataset.
 - Open the details of any product by clicking on its name.
 - Click the "Add to cart" button.
-- **Expected Result:** The shopping cart icon displays a badge with the number `1`.
+- **Expected Result:** The shopping cart icon displays a badge matching the dynamically expected value (e.g., `1` or `0` for problem users).
 
 ---
 
