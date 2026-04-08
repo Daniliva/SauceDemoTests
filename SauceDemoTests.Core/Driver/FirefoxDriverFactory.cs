@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SauceDemoTests.Interfaces;
+using SauceDemoTests.Core.Interfaces;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace SauceDemoTests.Utilities
+namespace SauceDemoTests.Core.Driver
 {
     public class FirefoxDriverFactory : IWebBrowserDriverFactory
     {

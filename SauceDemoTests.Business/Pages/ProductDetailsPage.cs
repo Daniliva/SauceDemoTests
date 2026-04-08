@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SauceDemoTests.Pages
+namespace SauceDemoTests.Business.Pages
 {
     public class ProductDetailsPage(IWebDriver driver)
     {
@@ -10,7 +10,7 @@ namespace SauceDemoTests.Pages
         {
             get
             {
-                return this.driver.FindElement(By.CssSelector("button[data-test^='add-to-cart']"));
+                return this.driver.FindElement(By.CssSelector(".inventory_details_container button[data-test^='add-to-cart']"));
             }
         }
 

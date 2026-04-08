@@ -1,4 +1,4 @@
-﻿namespace SauceDemoTests.Configuration
+﻿namespace SauceDemoTests.Core.Configuration
 {
     public class UserModel
     {

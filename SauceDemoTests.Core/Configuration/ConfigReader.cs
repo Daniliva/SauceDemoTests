@@ -1,8 +1,9 @@
 ﻿using System.Text.Json;
+
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 
-namespace SauceDemoTests.Configuration
+namespace SauceDemoTests.Core.Configuration
 {
     public static class ConfigReader
     {

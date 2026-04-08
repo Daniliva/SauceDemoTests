@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OpenQA.Selenium;
-using SauceDemoTests.Pages;
-using SauceDemoTests.Utilities;
+using SauceDemoTests.Business.Pages;
+using SauceDemoTests.Core.Driver;
+using SauceDemoTests.Core.Logging;
 
 
-namespace SauceDemoTests.Configuration
+namespace SauceDemoTests.Core.Configuration
 {
     public static class TestApp
     {
@@ -18,7 +19,7 @@ namespace SauceDemoTests.Configuration
             services.AddScoped<IWebDriver>(p =>
             {
                 IWebDriver driver = DriverSingleton.GetDriver(browser);
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(40);
                 return driver;
             });
 

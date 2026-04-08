@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using SauceDemoTests.Interfaces;
+using SauceDemoTests.Core.Interfaces;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 
-namespace SauceDemoTests.Utilities
+namespace SauceDemoTests.Core.Driver
 {
     public class ChromeDriverFactory : IWebBrowserDriverFactory
     {

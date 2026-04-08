@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SauceDemoTests.Utilities
+namespace SauceDemoTests.Core.Driver
 {
     public sealed class DriverSingleton
     {

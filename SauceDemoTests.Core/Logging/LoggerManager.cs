@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace SauceDemoTests.Utilities
+namespace SauceDemoTests.Core.Logging
 {
     public class LoggerManager
     {

@@ -1,7 +1,8 @@
 ﻿using OpenQA.Selenium;
-using SauceDemoTests.Interfaces;
+using SauceDemoTests.Core.Interfaces;
+using SauceDemoTests.Core.Logging;
 
-namespace SauceDemoTests.Utilities
+namespace SauceDemoTests.Core.Driver
 {
     public static class BrowserFactory
     {

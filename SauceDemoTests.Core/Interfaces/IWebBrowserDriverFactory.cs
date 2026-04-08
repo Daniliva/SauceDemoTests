@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SauceDemoTests.Interfaces
+namespace SauceDemoTests.Core.Interfaces
 {
     public interface IWebBrowserDriverFactory
     {

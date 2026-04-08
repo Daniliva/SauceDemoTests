@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace SauceDemoTests.Pages
+namespace SauceDemoTests.Business.Pages
 {
     public class LoginPage(IWebDriver driver)
     {

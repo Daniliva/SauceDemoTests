@@ -1,34 +1,42 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SauceDemoTests", "SauceDemoTests.csproj", "{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SauceDemoTests.Tests", "SauceDemoTests\SauceDemoTests.Tests.csproj", "{CE12F6EF-BA25-6AFA-084E-12E72706E08F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SauceDemoTests.Core", "SauceDemoTests.Core\SauceDemoTests.Core.csproj", "{88BBC84A-7C73-4C28-9224-FBB6FE1248D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SauceDemoTests.Business", "SauceDemoTests.Business\SauceDemoTests.Business.csproj", "{82914286-9EFB-45AC-9ADA-E73E213F5A92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestData", "TestData", "{EAE02C97-D9B0-4CC8-8930-482A9E0F13B8}"
+	ProjectSection(SolutionItems) = preProject
+		SauceDemoTests\TestData\users.json = SauceDemoTests\TestData\users.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Debug|x64.Build.0 = Debug|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Debug|x86.Build.0 = Debug|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Release|x64.ActiveCfg = Release|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Release|x64.Build.0 = Release|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Release|x86.ActiveCfg = Release|Any CPU
-		{CA6D8FCD-B489-4E2E-A624-8759DF30B2DC}.Release|x86.Build.0 = Release|Any CPU
+		{CE12F6EF-BA25-6AFA-084E-12E72706E08F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE12F6EF-BA25-6AFA-084E-12E72706E08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE12F6EF-BA25-6AFA-084E-12E72706E08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE12F6EF-BA25-6AFA-084E-12E72706E08F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88BBC84A-7C73-4C28-9224-FBB6FE1248D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88BBC84A-7C73-4C28-9224-FBB6FE1248D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88BBC84A-7C73-4C28-9224-FBB6FE1248D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88BBC84A-7C73-4C28-9224-FBB6FE1248D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82914286-9EFB-45AC-9ADA-E73E213F5A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82914286-9EFB-45AC-9ADA-E73E213F5A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82914286-9EFB-45AC-9ADA-E73E213F5A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82914286-9EFB-45AC-9ADA-E73E213F5A92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9EE76085-7B5E-4986-9A05-78081F996B5B}
 	EndGlobalSection
 EndGlobal

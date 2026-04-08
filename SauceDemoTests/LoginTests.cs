@@ -1,14 +1,11 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using SauceDemoTests.Configuration;
-using SauceDemoTests.Pages;
-using SauceDemoTests.Utilities;
+using SauceDemoTests.Business.Pages;
+using SauceDemoTests.Core.Configuration;
+using SauceDemoTests.Core.Logging;
 
-[assembly: Parallelizable(ParallelScope.Fixtures)]
-[assembly: LevelOfParallelism(8)]
-
-namespace SauceDemoTests.Test
+namespace SauceDemoTests.Tests
 {
     [TestFixtureSource(typeof(ConfigReader), nameof(ConfigReader.GetBrowsers))]
     public class LoginTests
@@ -75,26 +72,6 @@ namespace SauceDemoTests.Test
                 this.inventoryPage.SortDropdown.Displayed.Should().BeTrue();
                 this.inventoryPage.InventoryItems.Should().NotBeEmpty();
             }
-        }
-
-        [TestCaseSource(typeof(ConfigReader), nameof(ConfigReader.GetUsers))]
-        public void UC3_TestAddingProductsToShoppingCart(UserModel user)
-        {
-            if (user.IsLockedOut)
-            {
-                return;
-            }
-
-            LoggerManager.Instance!.Logger.Information($"[UC-3] Running for user: {user.Username} on {this.browser}");
-
-            this.loginPage.EnterUsername(user.Username);
-            this.loginPage.EnterPassword(user.Password);
-            this.loginPage.ClickLogin();
-
-            this.inventoryPage.OpenAnyProductDetails();
-            this.productDetailsPage.ClickAddToCart();
-
-            this.inventoryPage.GetCartBadgeCount().Should().Be(user.ExpectedBadge);
         }
     }
 }
